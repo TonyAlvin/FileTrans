@@ -1,0 +1,15 @@
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.csproj.AssemblyReference.cache
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.GeneratedMSBuildEditorConfig.editorconfig
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.AssemblyInfoInputs.cache
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.AssemblyInfo.cs
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.csproj.CoreCompileInputs.cache
+E:\Programing\DotNet\fileTran\bin\Debug\net6.0\fileTran.exe
+E:\Programing\DotNet\fileTran\bin\Debug\net6.0\fileTran.deps.json
+E:\Programing\DotNet\fileTran\bin\Debug\net6.0\fileTran.runtimeconfig.json
+E:\Programing\DotNet\fileTran\bin\Debug\net6.0\fileTran.dll
+E:\Programing\DotNet\fileTran\bin\Debug\net6.0\fileTran.pdb
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.dll
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\refint\fileTran.dll
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.pdb
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\fileTran.genruntimeconfig.cache
+E:\Programing\DotNet\fileTran\obj\Debug\net6.0\ref\fileTran.dll

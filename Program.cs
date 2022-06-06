@@ -15,6 +15,11 @@ namespace fileTran
         public bool isclient { get; }
         private Socket socket_commu;
         private Socket socket_ser_listener;
+        ////// 事件 ///////
+        public delegate void ConnectedHandler(BinaryReader bf);
+        public event ConnectedHandler connection;       // 连接成功
+        public delegate void DisconnectedHandler();
+        public event DisconnectedHandler disconnection; // 断开
 
         public SocketConnection()
         {
@@ -142,13 +147,74 @@ namespace fileTran
         {   // 发数据
             con1.send(input);
         });///////////////////////////////////////end of blocks///////////////////////////////////////////////////////////
-        void Main(string[] args)
+
+        async static void TransFile(BinaryWriter bf, SocketConnection con)
+        {
+            while (true)
+            {
+                try
+                {
+                    byte[] recbuf = new byte[200];
+                    Task task = new Task(() => socketRecBlock.Post(recbuf));
+                    if (task == await Task.WhenAny(task, Task.Delay(1000)))
+                    {
+                        ;
+                    }
+                    else
+                    {
+                        Console.WriteLine("task timeout");
+                        break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Rec failed....");
+                }
+            }
+            Console.WriteLine("Rec Success.");
+        }
+
+        static void SendFile(BinaryReader bf, SocketConnection con)
+        {
+            while (true)
+            {
+                try
+                {
+                    byte[] buffer = bf.ReadBytes(200);
+                    fileReadBlock.Post(buffer);
+                }
+                catch
+                {
+                    break;
+                }
+            }
+            Console.WriteLine("Send Success.");
+        }
+
+
+        static void Main(string[] args)
         {
             fileReadBlock.LinkTo(socketTransBlock); // 读文件->发送
             socketRecBlock.LinkTo(fileWriteBlock);  // 接受->写文件
 
             con1 = new SocketConnection();  // 声明Socket类的实例
+            con1.connection += new SocketConnection.ConnectedHandler();
             con1.connect(1);                // 连接
+
+            if (con1.isclient)
+            {
+                f = new FileStream("./output.docx", FileMode.Create, FileAccess.ReadWrite);
+                bf = new BinaryWriter(f);
+
+            }
+            else
+            {
+                f = new FileStream("./input.docx", FileMode.Open, FileAccess.Read);
+                BinaryReader binInput = new BinaryReader(f);
+
+                Console.WriteLine("trans finished.");
+            }
+            Console.ReadKey(true);
         }
     }
 
